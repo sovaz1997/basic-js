@@ -5,10 +5,6 @@ module.exports = class DepthCalculator {
         }
 
         let base = 1;
-/*
-        if(arr.length === 0) {
-            return 1;
-        }*/
 
         let max = 0;
         arr.forEach(it => {
