@@ -3,6 +3,6 @@ module.exports = function calculateHanoi(disksNumber, turnsSpeed) {
     
     return {
         turns: turns,
-        seconds: turns / turnsSpeed * 3600
+        seconds: turns / (turnsSpeed / 3600)
     }
 }
