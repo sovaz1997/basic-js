@@ -13,6 +13,36 @@ class VigenereCipheringMachine {
     }
 
     encrypt(string, key) {
+
+        if(string === undefined || key == undefined) {
+            throw new Error();
+        }
+        string = string.toUpperCase();
+        key = key.toUpperCase();
+
+        const res = [];
+        let coding = 0;
+        for(let i = 0; i < string.length; ++i) {
+            if(string[i] >= 'A' && string[i] <= 'Z') {
+                res.push(this.shift(string[i], this.symCode(key[coding % key.length])));
+                coding++;
+            } else {
+                res.push(string[i]);
+            }
+        }
+
+        if(!this.direct) {
+            res.reverse();
+        }
+
+        return res.join('');
+    }
+
+    decrypt(string, key) {
+        if(string === undefined || key == undefined) {
+            throw new Error();
+        }
+
         string = string.toUpperCase();
         key = key.toUpperCase();
 
@@ -21,27 +51,21 @@ class VigenereCipheringMachine {
         }
 
         const res = [];
-        let spaceCount = 0;
+        let coding = 0;
         for(let i = 0; i < string.length; ++i) {
             if(string[i] >= 'A' && string[i] <= 'Z') {
-                res.push(this.shift(string[i], this.symCode(key[(i - spaceCount) % key.length])));
+                res.push(this.shift(string[i], 26 - this.symCode(key[coding % key.length])));
+                coding++;
             } else {
                 res.push(string[i]);
             }
+        }
 
-            if(string[i] == ' ') {
-                spaceCount++;
-            }
+        if(!this.direct) {
+            res.reverse();
         }
 
         return res.join('');
-        
-    }
-
-    decrypt() {
-        if(string === undefined || key == undefined) {
-            throw new Error();
-        }
     }
 
 
