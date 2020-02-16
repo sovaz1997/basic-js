@@ -2,6 +2,10 @@ module.exports = function createDreamTeam(members) {
   if(typeof(members) !== 'object') {
     return false;
   }
+
+  if(!Array.isArray(members)) {
+    return false;
+  }
   
   return members
   .filter((it) => {
