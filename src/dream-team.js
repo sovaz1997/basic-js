@@ -8,6 +8,7 @@ module.exports = function createDreamTeam(members) {
     return typeof(it) === 'string'
   })
   .map((it) =>  {
+    it = it.toUpperCase();
     for(let i = 0; i < it.length; ++i) {
       if(it[i] >= 'A' && it[i] <= 'Z') {
         return it[i];
