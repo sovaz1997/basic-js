@@ -1,6 +1,10 @@
 module.exports = function getSeason(date) {
-  if(typeof(date.getMonth) !== 'function') {
-    return false;
+  if(date === undefined) {
+    return 'Unable to determine the time of year!';
+  }
+
+  if(Object.prototype.toString.call(date) !== '[object Date]') {
+    throw new Error();
   }
 
   const month = date.getMonth()
