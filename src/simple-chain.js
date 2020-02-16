@@ -1,7 +1,7 @@
 const chainMaker = {
   chain: [],
-  getLength() {
-    return chain.length;
+  getLength: () => {
+    return this.chain.length;
   },
   addLink: (value) => {
     this.chain.push(value);
