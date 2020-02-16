@@ -11,32 +11,30 @@ module.exports = function transform(arr) {
         return arr;
     }
 
+    
+    let res = [];
     for(let i = 0; i < arr.length; ++i) {
         if(arr[i] === '--double-next') {
             if(i < arr.length - 1) {
-                arr[i] = arr[i + 1];
-            } else {
-                arr[i] = 'discard';
+                res.push(arr[i + 1]);
             }
         } else if(arr[i] === '--double-prev') {
             if(i > 0) {
-                arr[i] = arr[i - 1];
-            } else {
-                arr[i] = 'discard';
+                res.push(arr[i - 1]);
             }
         } else if(arr[i] === '--discard-next') {
             if(i < arr.length - 1) {
-                arr[i + 1] = 'discard';
+                i++;
             }
-            arr[i] = 'discard';
         } else if(arr[i] === '--discard-prev') {
-            if(i > 0) {
-                arr[i - 1] = 'discard';
+            if(res.length > 0) {
+                res.pop();
             }
-            arr[i] = 'discard';
+        } else {
+            res.push(arr[i]);
         }
     }
 
-    return arr.filter((it) => it !== 'discard');
+    return res;
     
 };
