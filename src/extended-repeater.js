@@ -1,24 +1,9 @@
 module.exports = function repeater(str, options) {
-
-    if(options.separator === undefined) {
-        options.separator = '+';
-    }
-
-    if(options.additionSeparator === undefined) {
-        options.additionSeparator = '';
-    }
-
-    if(options.repeatTimes === undefined) {
-        options.repeatTimes = 1;
-    }
-
-    if(options.additionRepeatTimes === undefined) {
-        options.additionRepeatTimes = 1;
-    }
-
-    if(options.addition === undefined) {
-        options.additionRepeatTimes = 0;
-    }
+    if(options.separator === undefined) options.separator = '+';
+    if(options.additionSeparator === undefined) options.additionSeparator = '';
+    if(options.repeatTimes === undefined) options.repeatTimes = 1;
+    if(options.additionRepeatTimes === undefined) options.additionRepeatTimes = 1;
+    if(options.addition === undefined) options.additionRepeatTimes = 0;
 
     let res = '';
 
@@ -28,13 +13,10 @@ module.exports = function repeater(str, options) {
         for(let j = 0; j < options.additionRepeatTimes; ++j) {
             res += options.addition;
 
-            if(j < options.additionRepeatTimes - 1) {
-                res += options.additionSeparator;
-            }
+            if(j < options.additionRepeatTimes - 1) res += options.additionSeparator;
         }
-        if(i < options.repeatTimes - 1) {
-            res += options.separator;
-        }
+
+        if(i < options.repeatTimes - 1) res += options.separator;
     }
 
     return res;

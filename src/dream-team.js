@@ -1,9 +1,5 @@
 module.exports = function createDreamTeam(members) {
-  if(typeof(members) !== 'object') {
-    return false;
-  }
-
-  if(!Array.isArray(members)) {
+  if(typeof(members) !== 'object' || !Array.isArray(members)) {
     return false;
   }
   

@@ -11,8 +11,7 @@ module.exports = function transform(arr) {
         return arr;
     }
 
-    
-    let res = [];
+    const res = [];
     for(let i = 0; i < arr.length; ++i) {
         if(arr[i] === '--double-next') {
             if(i < arr.length - 1) {
@@ -36,5 +35,4 @@ module.exports = function transform(arr) {
     }
 
     return res;
-    
 };
