@@ -13,32 +13,14 @@ class VigenereCipheringMachine {
     }
 
     encrypt(string, key) {
-
-        if(string === undefined || key == undefined) {
-            throw new Error();
-        }
-        string = string.toUpperCase();
-        key = key.toUpperCase();
-
-        const res = [];
-        let coding = 0;
-        for(let i = 0; i < string.length; ++i) {
-            if(string[i] >= 'A' && string[i] <= 'Z') {
-                res.push(this.shift(string[i], this.symCode(key[coding % key.length])));
-                coding++;
-            } else {
-                res.push(string[i]);
-            }
-        }
-
-        if(!this.direct) {
-            res.reverse();
-        }
-
-        return res.join('');
+        return this.crypt(string, key, false);
     }
 
     decrypt(string, key) {
+        return this.crypt(string, key, true);
+    }
+
+    crypt(string, key, isDecrypt) {
         if(string === undefined || key == undefined) {
             throw new Error();
         }
@@ -46,15 +28,15 @@ class VigenereCipheringMachine {
         string = string.toUpperCase();
         key = key.toUpperCase();
 
-        if(string === undefined || key == undefined) {
-            throw new Error();
-        }
-
         const res = [];
         let coding = 0;
         for(let i = 0; i < string.length; ++i) {
             if(string[i] >= 'A' && string[i] <= 'Z') {
-                res.push(this.shift(string[i], 26 - this.symCode(key[coding % key.length])));
+                if(isDecrypt) {
+                    res.push(this.shift(string[i], 26 - this.symCode(key[coding % key.length])));
+                } else {
+                    res.push(this.shift(string[i], this.symCode(key[coding % key.length])));
+                }
                 coding++;
             } else {
                 res.push(string[i]);
@@ -67,8 +49,6 @@ class VigenereCipheringMachine {
 
         return res.join('');
     }
-
-
 }
 
 module.exports = VigenereCipheringMachine;
